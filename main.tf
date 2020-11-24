@@ -1,10 +1,9 @@
 resource "pagerduty_user" "pd_user" {
-  count           = var.enabled ? 1 : 0
-  name            = var.name
-  email           = var.email
-  role            = var.role
-  job_title       = var.job_title
-  team_membership = [var.team_membership]
+  count     = var.enabled ? 1 : 0
+  name      = var.name
+  email     = var.email
+  role      = var.role
+  job_title = var.job_title
 }
 
 resource "pagerduty_user_contact_method" "pd_contact_phone" {
@@ -23,4 +22,12 @@ resource "pagerduty_user_contact_method" "pd_contact_sms" {
   country_code = var.mobile_country_code
   address      = var.mobile
   label        = "Mobile"
+}
+
+resource "pagerduty_user_contact_method" "pd_contact_email" {
+  count   = var.enabled ? 1 : 0
+  user_id = pagerduty_user.pd_user[0].id
+  type    = "email_contact_method"
+  address = var.email
+  label   = "Work"
 }
