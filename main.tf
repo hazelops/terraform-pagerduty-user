@@ -23,11 +23,3 @@ resource "pagerduty_user_contact_method" "pd_contact_sms" {
   address      = var.mobile
   label        = "Mobile"
 }
-
-resource "pagerduty_user_contact_method" "pd_contact_email" {
-  count   = var.enabled ? 1 : 0
-  user_id = pagerduty_user.pd_user[0].id
-  type    = "email_contact_method"
-  address = var.email
-  label   = "Work"
-}
