@@ -21,7 +21,7 @@ variable "role" {
 
 variable "job_title" {
   description = "The user's title."
-  default = "N/A"
+  default     = "N/A"
 }
 
 variable "mobile_country_code" {
