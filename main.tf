@@ -6,7 +6,7 @@ resource "pagerduty_user" "this" {
   job_title = var.job_title
 }
 
-resource "pagerduty_user_contact_method" "this" {
+resource "pagerduty_user_contact_method" "phone" {
   count        = var.enabled ? 1 : 0
   user_id      = pagerduty_user.this[0].id
   type         = "phone_contact_method"
@@ -15,7 +15,7 @@ resource "pagerduty_user_contact_method" "this" {
   label        = "Mobile"
 }
 
-resource "pagerduty_user_contact_method" "this" {
+resource "pagerduty_user_contact_method" "sms" {
   count        = var.enabled ? 1 : 0
   user_id      = pagerduty_user.this[0].id
   type         = "sms_contact_method"

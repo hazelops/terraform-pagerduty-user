@@ -25,7 +25,7 @@ variable "job_title" {
 }
 
 variable "mobile_country_code" {
-  description = " The 1-to-3 digit country calling code. Required when using 'phone_contact_method' or 'sms_contact_method'."
+  description = "The 1-to-3 digit country calling code. Required when using 'phone_contact_method' or 'sms_contact_method'."
 }
 
 variable "mobile" {
