@@ -11,7 +11,11 @@ variable "name" {
 }
 
 variable "email" {
-  description = "The user's email address."
+  description = "The user's main email address."
+}
+
+variable "email_address" {
+  description = "The user's email address for notifications"
 }
 
 variable "role" {
