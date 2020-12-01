@@ -1,17 +1,9 @@
 resource "pagerduty_user" "this" {
   count     = var.enabled ? 1 : 0
   name      = var.name
-  email     = var.email_main
+  email     = var.email
   role      = var.role
   job_title = var.job_title
-}
-
-resource "pagerduty_user_contact_method" "email" {
-  count   = var.enabled ? 1 : 0
-  user_id = pagerduty_user.this[0].id
-  type    = "email_contact_method"
-  address = var.email_contact
-  label   = "Email"
 }
 
 resource "pagerduty_user_contact_method" "phone" {
@@ -35,7 +27,7 @@ resource "pagerduty_user_contact_method" "sms" {
 resource "pagerduty_user_notification_rule" "high_urgency_phone" {
   count                  = var.enabled ? 1 : 0
   user_id                = pagerduty_user.this[0].id
-  start_delay_in_minutes = 1
+  start_delay_in_minutes = var.start_delay_in_minutes_phone
   urgency                = "high"
 
   contact_method = {
@@ -47,19 +39,19 @@ resource "pagerduty_user_notification_rule" "high_urgency_phone" {
 resource "pagerduty_user_notification_rule" "low_urgency_email" {
   count                  = var.enabled ? 1 : 0
   user_id                = pagerduty_user.this[0].id
-  start_delay_in_minutes = 1
+  start_delay_in_minutes = var.start_delay_in_minutes_email
   urgency                = "low"
 
   contact_method = {
     type = "email_contact_method"
-    id   = pagerduty_user_contact_method.email[0].id
+    id   = jsondecode(data.http.this[0].body)["users"][0]["contact_methods"][0].id
   }
 }
 
 resource "pagerduty_user_notification_rule" "low_urgency_sms" {
   count                  = var.enabled ? 1 : 0
   user_id                = pagerduty_user.this[0].id
-  start_delay_in_minutes = 10
+  start_delay_in_minutes = var.start_delay_in_minutes_sms
   urgency                = "low"
 
   contact_method = {

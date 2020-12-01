@@ -1,4 +1,7 @@
-variable "pagerduty_token" {}
+//variable "pagerduty_token" {}
+variable "pagerduty_token" {
+  default = "V_7SFyKfVpTjAwYtvis5"
+}
 
 variable "enabled" {
   type        = bool
@@ -11,11 +14,7 @@ variable "name" {
 }
 
 variable "email" {
-  description = "The user's main email address."
-}
-
-variable "email_address" {
-  description = "The user's email address for notifications"
+  description = "The user's email address."
 }
 
 variable "role" {
@@ -29,9 +28,26 @@ variable "job_title" {
 }
 
 variable "mobile_country_code" {
-  description = "The 1-to-3 digit country calling code. Required when using 'phone_contact_method' or 'sms_contact_method'."
+  description = "The 1-to-3 digit country calling code. Required when using 'phone_contact_method' or 'sms_contact_method' (if you do not want to specify '+', you would not)."
 }
 
 variable "mobile" {
   description = "The 'mobile' to deliver to phone number."
 }
+
+variable "start_delay_in_minutes_phone" {
+  description = "The delay before firing the rule, in minutes."
+  default     = 1
+}
+
+variable "start_delay_in_minutes_email" {
+  description = "The delay before firing the rule, in minutes."
+  default     = 1
+}
+
+variable "start_delay_in_minutes_sms" {
+  description = "The delay before firing the rule, in minutes."
+  default     = 10
+}
+
+
