@@ -14,10 +14,6 @@ variable "email" {
   description = "The user's main email address."
 }
 
-variable "email_address" {
-  description = "The user's email address for notifications"
-}
-
 variable "role" {
   description = "Account must have the 'read_only_users' ability to set a user as a 'read_only_user' or a 'read_only_limited_user', and must have advanced permissions abilities to set a user as observer or 'restricted_access'. Can be 'admin', 'limited_user', 'observer', 'owner', 'read_only_user', 'read_only_limited_user', 'restricted_access', or 'user'."
   default     = "user"
@@ -29,9 +25,25 @@ variable "job_title" {
 }
 
 variable "mobile_country_code" {
-  description = "The 1-to-3 digit country calling code. Required when using 'phone_contact_method' or 'sms_contact_method'."
+  description = "The 1-to-3 digit country calling code. Required when using 'phone_contact_method' or 'sms_contact_method' (if you do not to specify '+', you would not)."
 }
 
 variable "mobile" {
   description = "The 'mobile' to deliver to phone number."
 }
+
+variable "start_delay_in_minutes_phone" {
+  description = "The delay before firing the rule, in minutes."
+  default     = 1
+}
+
+variable "start_delay_in_minutes_email" {
+  description = "The delay before firing the rule, in minutes."
+  default     = 1
+}
+
+variable "start_delay_in_minutes_sms" {
+  description = "The delay before firing the rule, in minutes."
+  default     = 10
+}
+
