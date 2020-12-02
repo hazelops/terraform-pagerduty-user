@@ -1,4 +1,4 @@
-data "http" "this" {
+data "http" "pagerduty_users" {
   count = var.enabled ? 1 : 0
   url   = "https://api.pagerduty.com/users?total=false"
 
@@ -7,4 +7,6 @@ data "http" "this" {
     authorization = "Token token=${var.pagerduty_token}"
     content-type  = "application/json"
   }
+
+  depends_on = [pagerduty_user.this]
 }

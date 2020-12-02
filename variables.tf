@@ -21,16 +21,27 @@ variable "role" {
 
 variable "job_title" {
   description = "The user's title."
-  default     = "N/A"
+  default     = "Engineer"
 }
 
 variable "mobile_country_code" {
   description = "The 1-to-3 digit country calling code. Required when using 'phone_contact_method' or 'sms_contact_method' (if you do not to specify '+', you would not)."
+  default     = "+1"
 }
 
 variable "mobile" {
   description = "The 'mobile' to deliver to phone number."
 }
+
+//variable "device_type" {
+//  desctiption = "Type of device 'android' or 'ios'."
+//  default = "android"
+//}
+
+//variable "device_token" {
+//  description = "Device token for push notification."
+//  default = ""
+//}
 
 variable "start_delay_in_minutes_phone" {
   description = "The delay before firing the rule, in minutes."
