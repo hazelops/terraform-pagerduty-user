@@ -1,5 +1,3 @@
-variable "pagerduty_token" {}
-
 variable "enabled" {
   type        = bool
   default     = true
@@ -57,4 +55,3 @@ variable "start_delay_in_minutes_sms" {
   description = "The delay before firing the rule, in minutes."
   default     = 10
 }
-

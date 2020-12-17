@@ -36,18 +36,6 @@ resource "pagerduty_user_contact_method" "sms" {
 //  label        = "Push notification"
 //}
 
-resource "pagerduty_user_notification_rule" "low_urgency_email" {
-  count                  = var.enabled ? 1 : 0
-  user_id                = pagerduty_user.this[0].id
-  start_delay_in_minutes = var.start_delay_in_minutes_email
-  urgency                = "low"
-
-  contact_method = {
-    type = "email_contact_method"
-    id   = jsondecode(data.http.pagerduty_users[0].body)["users"][0]["contact_methods"][0].id
-  }
-}
-
 resource "pagerduty_user_notification_rule" "high_urgency_phone" {
   count                  = (var.enabled && length(var.mobile) > 0) ? 1 : 0
   user_id                = pagerduty_user.this[0].id
