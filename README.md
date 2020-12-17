@@ -16,6 +16,9 @@ This module provides settings:
 ### Miminal setup
 
 ```hcl
+provider "pagerduty" {
+  token = "Pagerduty_Token"
+}
 module "pagerduty_user" {
   source          = "git@github.com:hazelops/terraform-pagerduty-user.git"
   email           = "<User_Email>"
@@ -27,6 +30,9 @@ module "pagerduty_user" {
 ### Full setup
 
 ```hcl
+provider "pagerduty" {
+  token = "Pagerduty_Token"
+}
 module "pagerduty_user" {
   source          = "git@github.com:hazelops/terraform-pagerduty-user.git"
   enabled         = true
