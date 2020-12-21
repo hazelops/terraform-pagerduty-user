@@ -25,10 +25,10 @@ resource "pagerduty_user_contact_method" "sms" {
 }
 
 resource "pagerduty_user_contact_method" "work_email" {
-  count        = (var.enabled && length(var.work_email) > 0) ? 1 : 0
+  count        = (var.enabled && length(var.low_urgency_email) > 0) ? 1 : 0
   user_id = pagerduty_user.this[0].id
   type    = "email_contact_method"
-  address = var.work_email
+  address = var.low_urgency_email
   label   = "Work email"
 }
 
@@ -69,7 +69,7 @@ resource "pagerduty_user_notification_rule" "low_urgency_sms" {
 }
 
 resource "pagerduty_user_notification_rule" "low_urgency_email" {
-  count        = (var.enabled && length(var.work_email) > 0) ? 1 : 0
+  count        = (var.enabled && length(var.low_urgency_email) > 0) ? 1 : 0
   user_id                = pagerduty_user.this[0].id
   start_delay_in_minutes = var.start_delay_in_minutes_email
   urgency                = "low"

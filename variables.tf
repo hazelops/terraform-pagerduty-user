@@ -12,8 +12,9 @@ variable "email" {
   description = "The user's main email address."
 }
 
-variable "work_email" {
-  description = "The user's work email which on which low urgency alerts will send"
+variable "low_urgency_email" {
+  description = "User's work email to which only low urgency alerts will sent (optional)"
+  default     = ""
 }
 
 variable "role" {
@@ -33,6 +34,7 @@ variable "mobile_country_code" {
 
 variable "mobile" {
   description = "The 'mobile' to deliver to phone number."
+  default     = ""
 }
 
 //variable "device_type" {
