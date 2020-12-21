@@ -12,6 +12,10 @@ variable "email" {
   description = "The user's main email address."
 }
 
+variable "work_email" {
+  description = "The user's email which on which alerts will send"
+}
+
 variable "role" {
   description = "Account must have the 'read_only_users' ability to set a user as a 'read_only_user' or a 'read_only_limited_user', and must have advanced permissions abilities to set a user as observer or 'restricted_access'. Can be 'admin', 'limited_user', 'observer', 'owner', 'read_only_user', 'read_only_limited_user', 'restricted_access', or 'user'."
   default     = "user"
