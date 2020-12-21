@@ -13,7 +13,7 @@ variable "email" {
 }
 
 variable "work_email" {
-  description = "The user's email which on which alerts will send"
+  description = "The user's work email which on which low urgency alerts will send"
 }
 
 variable "role" {
