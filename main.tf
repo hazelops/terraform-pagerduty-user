@@ -24,6 +24,14 @@ resource "pagerduty_user_contact_method" "sms" {
   label        = "Mobile SMS"
 }
 
+resource "pagerduty_user_contact_method" "work_email" {
+  count        = (var.enabled && length(var.low_urgency_email) > 0) ? 1 : 0
+  user_id = pagerduty_user.this[0].id
+  type    = "email_contact_method"
+  address = var.low_urgency_email
+  label   = "Work email"
+}
+
 // TODO: https://github.com/PagerDuty/terraform-provider-pagerduty/issues/268
 // I will leave it here for better times
 //
@@ -57,5 +65,17 @@ resource "pagerduty_user_notification_rule" "low_urgency_sms" {
   contact_method = {
     type = "sms_contact_method"
     id   = pagerduty_user_contact_method.sms[0].id
+  }
+}
+
+resource "pagerduty_user_notification_rule" "low_urgency_email" {
+  count        = (var.enabled && length(var.low_urgency_email) > 0) ? 1 : 0
+  user_id                = pagerduty_user.this[0].id
+  start_delay_in_minutes = var.start_delay_in_minutes_email
+  urgency                = "low"
+
+  contact_method = {
+    type = "email_contact_method"
+    id   = pagerduty_user_contact_method.work_email[0].id
   }
 }

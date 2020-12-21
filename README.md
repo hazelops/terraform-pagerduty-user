@@ -21,9 +21,8 @@ provider "pagerduty" {
 }
 module "pagerduty_user" {
   source          = "git@github.com:hazelops/terraform-pagerduty-user.git"
-  email           = "<User_Email>"
-  mobile          = "1234567890"
-  name            = "<User_Name>"
+  email           = "<user_email_address>"
+  name            = "<user_name>"
 }
 ```
 
@@ -37,10 +36,11 @@ module "pagerduty_user" {
   source          = "git@github.com:hazelops/terraform-pagerduty-user.git"
   enabled         = true
   job_title       = "Engineer"
-  email           = "<User_Email>"
+  email           = "<user_email_address>"
+  low_urgency_email = "<low_urgency_email_address>"
   mobile_country_code = "+1"
   mobile          = "1234567890"
-  name            = "<User_Name>"
+  name            = "<user_name>"
   role            = "user"
   start_delay_in_minutes_email  = 1
   start_delay_in_minutes_phone  = 1
@@ -68,7 +68,8 @@ No requirements.
 | email | The user's main email address. | `any` | n/a | yes |
 | enabled | Gives ability to enable or disable a module | `bool` | `true` | no |
 | job\_title | The user's title. | `string` | `"Engineer"` | no |
-| mobile | The 'mobile' to deliver to phone number. | `any` | n/a | yes |
+| low\_urgency\_email | User's work email to which only low urgency alerts will sent (optional) | `string` | `""` | no |
+| mobile | The 'mobile' to deliver to phone number. | `string` | `""` | no |
 | mobile\_country\_code | The 1-to-3 digit country calling code. Required when using 'phone\_contact\_method' or 'sms\_contact\_method' (if you do not to specify '+', you would not). | `string` | `"+1"` | no |
 | name | The name of the user. | `any` | n/a | yes |
 | role | Account must have the 'read\_only\_users' ability to set a user as a 'read\_only\_user' or a 'read\_only\_limited\_user', and must have advanced permissions abilities to set a user as observer or 'restricted\_access'. Can be 'admin', 'limited\_user', 'observer', 'owner', 'read\_only\_user', 'read\_only\_limited\_user', 'restricted\_access', or 'user'. | `string` | `"user"` | no |

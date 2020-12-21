@@ -12,6 +12,11 @@ variable "email" {
   description = "The user's main email address."
 }
 
+variable "low_urgency_email" {
+  description = "User's work email to which only low urgency alerts will sent (optional)"
+  default     = ""
+}
+
 variable "role" {
   description = "Account must have the 'read_only_users' ability to set a user as a 'read_only_user' or a 'read_only_limited_user', and must have advanced permissions abilities to set a user as observer or 'restricted_access'. Can be 'admin', 'limited_user', 'observer', 'owner', 'read_only_user', 'read_only_limited_user', 'restricted_access', or 'user'."
   default     = "user"
@@ -29,6 +34,7 @@ variable "mobile_country_code" {
 
 variable "mobile" {
   description = "The 'mobile' to deliver to phone number."
+  default     = ""
 }
 
 //variable "device_type" {
