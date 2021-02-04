@@ -2,7 +2,7 @@
 terraform {
   required_providers {
     pagerduty = {
-      source = "hashicorp/pagerduty"
+      source = "pagerduty/pagerduty"
     }
   }
   required_version = ">= 0.12"
