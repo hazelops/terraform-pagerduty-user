@@ -1,3 +1,3 @@
 output "id" {
-  value = join("", pagerduty_user.this[0].id)
+  value = var.enabled ? pagerduty_user.this[0].id : ""
 }
